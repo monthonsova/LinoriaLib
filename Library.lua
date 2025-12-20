@@ -2067,7 +2067,13 @@ do
             end
 
             local mappedValue = Library:MapValue(Slider.Value, Slider.Min, Slider.Max, 0, Slider.MaxSize);
-            local X = math.clamp(math.floor(mappedValue + 0.5), 0, Slider.MaxSize);
+            -- Ensure when Value equals Max, X equals MaxSize
+            local X = math.clamp(math.ceil(mappedValue), 0, Slider.MaxSize);
+            if Slider.Value >= Slider.Max then
+                X = Slider.MaxSize;
+            elseif Slider.Value <= Slider.Min then
+                X = 0;
+            end
             Fill.Size = UDim2.new(0, X, 1, 0);
 
             HideBorderRight.Visible = not (X >= Slider.MaxSize or X <= 0);
