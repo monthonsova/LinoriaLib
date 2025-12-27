@@ -7043,7 +7043,7 @@ end
 an.Tabs[ax]=az
 
 if itemCount%10==0 then
-task.wait()
+task.wait(0.1)
 end
 
 ar:Display()
