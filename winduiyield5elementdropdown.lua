@@ -7042,7 +7042,7 @@ end
 
 an.Tabs[ax]=az
 
-if itemCount%10==0 then
+if itemCount%50==0 then
 task.wait(0.1)
 end
 
