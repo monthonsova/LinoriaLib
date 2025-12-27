@@ -7044,7 +7044,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     
     -- Yield every 10 items to allow UI to process other tasks (non-blocking)
     if itemCount%10==0 then
-    task.wait(0.05)
+    task.wait(0.1)
     end
     
     ar:Display()
