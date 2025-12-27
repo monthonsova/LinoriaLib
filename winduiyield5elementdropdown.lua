@@ -7042,8 +7042,8 @@ end
 
 an.Tabs[ax]=az
 
-if itemCount%5==0 then
-task.wait(1)
+if itemCount%10==0 then
+task.wait()
 end
 
 ar:Display()
