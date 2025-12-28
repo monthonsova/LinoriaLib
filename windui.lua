@@ -6019,6 +6019,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     }
     end
     if ak.IsTextbox==nil and ak.Title==nil then ak.IsTextbox=false else ak.IsTextbox=ak.IsTextbox~=false end
+    if ak.Title~=nil and ak.IsTextbox==false then ak.IsTextbox=true end
     
     local al
     local am
@@ -6164,16 +6165,35 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     Size=UDim2.new(0,ak.TextBoxWidth,0,0),
     TextXAlignment="Left",
     Text=FormatValue(ao),
-    ThemeTag={
-    TextColor3="Text"
-    },
     TextTransparency=.4,
     AutomaticSize="Y",
     TextSize=15,
     FontFace=Font.new(ad.Font,Enum.FontWeight.Medium),
-    BackgroundTransparency=1,
+    BackgroundTransparency=0.9,
+    ClearTextOnFocus=false,
     LayoutOrder=-1,
     Visible=ak.IsTextbox,
+    ThemeTag={
+    TextColor3="Text",
+    BackgroundColor3="ElementBackground"
+    }
+    },{
+    ae("UICorner",{
+    CornerRadius=UDim.new(0,4)
+    }),
+    ae("UIStroke",{
+    Thickness=1,
+    Transparency=0.8,
+    ThemeTag={
+    Color="Text"
+    }
+    }),
+    ae("UIPadding",{
+    PaddingLeft=UDim.new(0,4),
+    PaddingRight=UDim.new(0,4),
+    PaddingTop=UDim.new(0,2),
+    PaddingBottom=UDim.new(0,2)
+    })
     })
     })
     
@@ -6296,7 +6316,30 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     end
     end
     
+    ad.AddSignal(ak.UIElements.SliderContainer.TextBox.FocusGained,function()
+    ak.IsFocusing=true
+    af(ak.UIElements.SliderContainer.TextBox,0.1,{
+    BackgroundTransparency=0.7,
+    TextTransparency=0
+    }):Play()
+    if ak.UIElements.SliderContainer.TextBox:FindFirstChild"UIStroke"then
+    af(ak.UIElements.SliderContainer.TextBox.UIStroke,0.1,{
+    Transparency=0.3
+    }):Play()
+    end
+    end)
+    
     ad.AddSignal(ak.UIElements.SliderContainer.TextBox.FocusLost,function(ay)
+    ak.IsFocusing=false
+    af(ak.UIElements.SliderContainer.TextBox,0.1,{
+    BackgroundTransparency=0.9,
+    TextTransparency=0.4
+    }):Play()
+    if ak.UIElements.SliderContainer.TextBox:FindFirstChild"UIStroke"then
+    af(ak.UIElements.SliderContainer.TextBox.UIStroke,0.1,{
+    Transparency=0.8
+    }):Play()
+    end
     if ay then
     local az=tonumber(ak.UIElements.SliderContainer.TextBox.Text)
     if az then
