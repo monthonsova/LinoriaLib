@@ -7286,7 +7286,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     MenuWidth=an.MenuWidth,
     Value=an.Value,
     AllowNone=an.AllowNone,
-    SearchBarEnabled=an.SearchBarEnabled or false,
+    SearchBarEnabled=an.SearchBarEnabled~=nil and an.SearchBarEnabled or true,
     Multi=an.Multi,
     Callback=an.Callback or nil,
     
