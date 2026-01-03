@@ -4408,6 +4408,10 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     am.UICorner.CornerRadius=aq.CornerRadius
     am.TextButton.UICorner.CornerRadius=UDim.new(aq.CornerRadius.Scale,aq.CornerRadius.Offset-4)
     am.UIStroke.Thickness=aq.StrokeThickness
+    
+    if aq.Enabled~=false and af.IsOpenButtonEnabled and af.Closed then
+    al.Visible=true
+    end
     end
     
     return ag
@@ -11663,7 +11667,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
     task.wait(0.4)
     au.UIElements.Main.Visible=false
     
-    if au.OpenButtonMain and not au.Destroyed and not au.IsPC and au.IsOpenButtonEnabled then
+    if au.OpenButtonMain and not au.Destroyed and au.IsOpenButtonEnabled then
     au.OpenButtonMain:Visible(true)
     end
     end)
